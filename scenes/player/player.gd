@@ -3,7 +3,7 @@ signal use_weapon
 var animation : Node
 var move_direction : Vector2
 var animation_direction : String
-@onready var weapon : Node = $Pistol
+@onready var weapon : Node = $Weapons
 
 const player_velocity = 450.0
 const JUMP_VELOCITY = -400.0
@@ -27,6 +27,12 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("1st_player_move_use_weapon"):
 		use_weapon.emit()
+		
+	if Input.is_action_just_pressed("1st_player_next_weapon"):
+		weapon.next_weapon()
+	
+	if Input.is_action_just_pressed("1st_player_prev_weapon"):
+		weapon.prev_weapon()
 	
 	move_direction = move_direction.normalized()
 	velocity = player_velocity * move_direction 
@@ -34,6 +40,7 @@ func _physics_process(delta):
 
 func _ready():
 	animation = $AnimationPlayer
+	use_weapon.connect(weapon._on_player_use_weapon)
 
 func update_animation():
 	if move_direction.x > 0:

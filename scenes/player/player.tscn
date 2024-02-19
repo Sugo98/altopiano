@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8rrw1"]
 [ext_resource type="Texture2D" uid="uid://tciduqvcqlvu" path="res://assets/character/char_a_p1/char_a_p1_0bas_humn_v01.png" id="2_6qypq"]
-[ext_resource type="PackedScene" uid="uid://nbgoxj221cbk" path="res://scenes/weapon/pistol.tscn" id="3_rhfgv"]
+[ext_resource type="PackedScene" uid="uid://dn8qt0mpp8xy3" path="res://scenes/weapon/weapons.tscn" id="3_7a3bf"]
 
 [sub_resource type="Animation" id="Animation_fs7tl"]
 length = 0.001
@@ -197,7 +197,5 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jes68")
 
-[node name="Pistol" parent="." instance=ExtResource("3_rhfgv")]
-position = Vector2(-2, -22)
-
-[connection signal="use_weapon" from="." to="Pistol" method="_on_player_use_weapon"]
+[node name="Weapons" parent="." instance=ExtResource("3_7a3bf")]
+position = Vector2(0, -30)

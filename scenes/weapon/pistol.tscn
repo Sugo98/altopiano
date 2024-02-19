@@ -11,6 +11,5 @@ position = Vector2(45, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_f7k7r")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(59, -7)
-scale = Vector2(0.25, 0.25)
+[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
+position = Vector2(56, -28)

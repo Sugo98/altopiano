@@ -1,12 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvrje7t86kel1"]
+[gd_scene load_steps=5 format=3 uid="uid://dvrje7t86kel1"]
 
-[ext_resource type="Texture2D" uid="uid://cvk1l04pl6d4k" path="res://assets/bullets/bullet_1.png" id="1_blme1"]
 [ext_resource type="Script" path="res://scenes/weapon/bullet.gd" id="1_idnke"]
+[ext_resource type="Script" path="res://scenes/weapon/Trail.gd" id="3_jaa14"]
+
+[sub_resource type="Gradient" id="Gradient_krvn5"]
+offsets = PackedFloat32Array(0, 0.515152, 1)
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.7, 0.5, 0.5, 0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7b5q"]
+radius = 3.0
 
 [node name="Bullet" type="CharacterBody2D"]
 top_level = true
-scale = Vector2(0.5, 0.5)
+collision_layer = 0
 script = ExtResource("1_idnke")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_blme1")
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+width = 2.0
+default_color = Color(0.5, 0.5, 0.5, 1)
+gradient = SubResource("Gradient_krvn5")
+end_cap_mode = 2
+script = ExtResource("3_jaa14")
+MAX_SIZE = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c7b5q")
