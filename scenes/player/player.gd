@@ -3,6 +3,7 @@ signal use_weapon
 var animation : Node
 var move_direction : Vector2
 var animation_direction : String
+@onready var weapon : Node = $Pistol
 
 const player_velocity = 450.0
 const JUMP_VELOCITY = -400.0
@@ -37,14 +38,24 @@ func _ready():
 func update_animation():
 	if move_direction.x > 0:
 		animation_direction = "right"
+		weapon.point_right()
 	elif move_direction.x < 0:
 		animation_direction = "left"
+		weapon.point_left()
 	elif move_direction.y < 0:
 		animation_direction = "up"
 	elif move_direction.y > 0:
 		animation_direction = "down"
 		
+	if move_direction.y > 0:
+		weapon.z_index = 1
+	if move_direction.y < 0:
+		weapon.z_index = -1
+		
 	if move_direction.length() > 0: 
 		animation.play("walk_" + animation_direction)
 	else:
 		animation.play("idle_" + animation_direction)
+	
+	if move_direction.length() > 0:
+		weapon.rotation = move_direction.angle()
