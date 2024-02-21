@@ -4,29 +4,40 @@
 [ext_resource type="Script" path="res://scenes/weapon/toy_pistol.gd" id="1_eos8i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1466w"]
-radius = 6.0
+radius = 2.0
 
 [node name="ToyPistol" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_eos8i")
-bullet_speed = 100.0
-weapon_range = 1000.0
+damage = 1
+rate_of_fire = 4.0
+weapon_range = 750.0
+precision = 1.0
+ammo_size = 6
+box_ammo_size = 5
+recoil = 0.5
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 position = Vector2(0, -36)
 
-[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot"]
-position = Vector2(43, 6)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_0xlgs")
-
 [node name="ShootPoint" type="Marker2D" parent="WeaponPivot"]
 position = Vector2(59, 0)
 
-[node name="FeetPivot" type="Marker2D" parent="."]
-visible = false
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot"]
+position = Vector2(0, 36)
+rotation = -0.000858724
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_0xlgs")
+offset = Vector2(173, -118)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetPivot"]
-visible = false
-position = Vector2(56, 0)
+[node name="FeetPivot" type="Marker2D" parent="."]
+
+[node name="ShadowShootPoint" type="Area2D" parent="FeetPivot"]
+position = Vector2(59, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetPivot/ShadowShootPoint"]
 shape = SubResource("CircleShape2D_1466w")
 debug_color = Color(0.25, 0.25, 0.25, 0.42)
+
+[node name="NextShot" type="Timer" parent="."]
+one_shot = true

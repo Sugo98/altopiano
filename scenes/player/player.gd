@@ -2,7 +2,18 @@ extends CharacterBody2D
 var animation : Node
 var move_direction : Vector2
 var animation_direction : String
-@export var weapon : Node
+
+@onready var weapon : Node = $ToyPistol
+@onready var status : Node = $CharacterStateMachine
+
+@export var health : int
+@export var movement_speed : float
+@export var shooting_slowdown : float
+@export var placing_trap_speed : float
+@export var rolling_range : float
+@export var rolling_speed : float
+@export var rolling_cooldown : float
+@export var time_of_invulnerability : float
 
 const player_velocity = 450.0
 const JUMP_VELOCITY = -400.0
@@ -12,36 +23,21 @@ var gravity = 0
 
 
 func _physics_process(delta):
-	
-	move_direction = Vector2(0,0)
-	if Input.is_action_pressed("1st_player_move_up"):
-		move_direction.y = -1
-	if Input.is_action_pressed("1st_player_move_down"):
-		move_direction.y = 1
-	if Input.is_action_pressed("1st_player_move_left"):
-		move_direction.x = -1
-	if Input.is_action_pressed("1st_player_move_right"):
-		move_direction.x = 1
-	update_animation()
-	
-	if Input.is_action_just_pressed("1st_player_move_use_weapon"):
-		weapon.use()
-		
+	#debug
+	if Input.is_action_just_pressed("1st_player_use_weapon"):
+		print("sprite position: " + str($Sprite2D.global_position))
+		print("obstacle position: " + str(get_tree().root.get_node("Game/Obstacle").global_position))
 	#if Input.is_action_just_pressed("1st_player_next_weapon"):
 		#weapon.next_weapon()
 	
 	#if Input.is_action_just_pressed("1st_player_prev_weapon"):
 		#weapon.prev_weapon()
-	
-	move_direction = move_direction.normalized()
-	velocity = player_velocity * move_direction 
-	move_and_slide()
 
 func _ready():
 	animation = $AnimationPlayer
 	#use_weapon.connect(weapon._on_player_use_weapon)
 
-func update_animation():
+func update_animation(move_direction):
 	if move_direction.x > 0:
 		animation_direction = "right"
 	elif move_direction.x < 0:
@@ -62,4 +58,5 @@ func update_animation():
 		animation.play("idle_" + animation_direction)
 	
 	if move_direction.length() > 0:
+		weapon.position = Vector2.RIGHT.rotated(move_direction.angle())
 		weapon.point_to(move_direction.angle())

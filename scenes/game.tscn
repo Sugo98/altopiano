@@ -10,7 +10,8 @@ y_sort_enabled = true
 [node name="Level0" parent="." instance=ExtResource("1_fvk8r")]
 
 [node name="Player" parent="." instance=ExtResource("2_7vj88")]
-position = Vector2(402, 201)
+position = Vector2(787, 265)
 
 [node name="Obstacle" parent="." instance=ExtResource("3_ece7v")]
+y_sort_enabled = true
 position = Vector2(1008, 571)
