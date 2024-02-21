@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://rai4f4o8cfxb"]
+[gd_scene load_steps=4 format=3 uid="uid://rai4f4o8cfxb"]
 
 [ext_resource type="PackedScene" uid="uid://roomepbt5rww" path="res://scenes/level_0/level_0.tscn" id="1_fvk8r"]
 [ext_resource type="PackedScene" uid="uid://cerh3cot5kkoy" path="res://scenes/player/player.tscn" id="2_7vj88"]
+[ext_resource type="PackedScene" uid="uid://doksbbjxo4qve" path="res://scenes/level_0/obstacle.tscn" id="3_ece7v"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -10,3 +11,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_7vj88")]
 position = Vector2(402, 201)
+
+[node name="Obstacle" parent="." instance=ExtResource("3_ece7v")]
+position = Vector2(1008, 571)

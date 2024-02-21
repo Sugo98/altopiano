@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cerh3cot5kkoy"]
+[gd_scene load_steps=16 format=3 uid="uid://cerh3cot5kkoy"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8rrw1"]
 [ext_resource type="Texture2D" uid="uid://tciduqvcqlvu" path="res://assets/character/char_a_p1/char_a_p1_0bas_humn_v01.png" id="2_6qypq"]
-[ext_resource type="PackedScene" uid="uid://dn8qt0mpp8xy3" path="res://scenes/weapon/weapons.tscn" id="3_7a3bf"]
+[ext_resource type="PackedScene" uid="uid://cmhjsecm1oomq" path="res://scenes/weapon/toy_pistol.tscn" id="2_vtdcw"]
 
 [sub_resource type="Animation" id="Animation_fs7tl"]
 length = 0.001
@@ -178,8 +178,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_jes68"]
 radius = 20.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijbf5"]
+radius = 21.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 script = ExtResource("1_8rrw1")
+weapon = NodePath("ToyPistol")
+
+[node name="ToyPistol" parent="." instance=ExtResource("2_vtdcw")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -23)
@@ -195,7 +201,12 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_jes68")
 
-[node name="Weapons" parent="." instance=ExtResource("3_7a3bf")]
-position = Vector2(0, -30)
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+rotation = 0.00231587
+shape = SubResource("CircleShape2D_ijbf5")
+debug_color = Color(0, 1, 0, 0.419608)

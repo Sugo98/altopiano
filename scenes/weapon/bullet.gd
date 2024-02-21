@@ -1,19 +1,36 @@
 extends CharacterBody2D
-var weapon_range : float = 500
-var speed : float = 1000
-var angle : float = 0
+var weapon_range : float = 1000
+var speed : float = 5000
 
-func _physics_process(_delta):
-	velocity = speed * Vector2.RIGHT.rotated(rotation)
+var trail_point : Vector2
+var is_flying : bool
+
+@onready var life_timer : Timer = $LifeTimer
+@onready var trail : Line2D = $Trail
+@onready var hit_box : CollisionShape2D = $HitBox
+
+func _physics_process(delta):
 	move_and_slide()
+	trail.add_point(trail_point)
+	trail_point += delta*speed*Vector2.LEFT
 
 func _ready():
-	fade_away()
+	trail_point = trail_point.rotated(-rotation)
+	velocity = speed * Vector2.RIGHT.rotated(rotation)
+	live_your_life()
 
-func fade_away():
+
+func live_your_life():
+	is_flying = true
 	var life_time = weapon_range / speed
-	print(life_time)
-	await get_tree().create_timer(life_time).timeout
-	speed = 0
-	await get_tree().create_timer(0.1).timeout
+	life_timer.start(life_time)
+	await life_timer.timeout
+	end_your_life()
+
+func end_your_life():
+	velocity = Vector2.ZERO
+	is_flying = false
+	hit_box.set_deferred("disabled",true)
+	life_timer.start(0.5)
+	await life_timer.timeout
 	queue_free()

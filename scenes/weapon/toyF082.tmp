@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmhjsecm1oomq"]
+
+[ext_resource type="Texture2D" uid="uid://dt0qt0nhm1ln4" path="res://assets/weapons/pistol2.png" id="1_0xlgs"]
+[ext_resource type="Script" path="res://scenes/weapon/toy_pistol.gd" id="1_eos8i"]
+
+[node name="ToyPistol" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_eos8i")
+sprite = NodePath("PivotPoint/WeaponSprite")
+
+[node name="PivotPoint" type="Marker2D" parent="."]
+position = Vector2(0, -30)
+
+[node name="WeaponSprite" type="Sprite2D" parent="PivotPoint"]
+position = Vector2(43, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_0xlgs")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvrje7t86kel1"]
+[gd_scene load_steps=4 format=3 uid="uid://dvrje7t86kel1"]
 
 [ext_resource type="Script" path="res://scenes/weapon/bullet.gd" id="1_idnke"]
-[ext_resource type="Script" path="res://scenes/weapon/Trail.gd" id="3_jaa14"]
 
 [sub_resource type="Gradient" id="Gradient_krvn5"]
 offsets = PackedFloat32Array(0, 0.515152, 1)
@@ -11,18 +10,18 @@ colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.7, 0.5, 0.5, 0.5, 0
 radius = 3.0
 
 [node name="Bullet" type="CharacterBody2D"]
-top_level = true
 collision_layer = 0
 script = ExtResource("1_idnke")
 
 [node name="Trail" type="Line2D" parent="."]
-top_level = true
 width = 2.0
 default_color = Color(0.5, 0.5, 0.5, 1)
 gradient = SubResource("Gradient_krvn5")
 end_cap_mode = 2
-script = ExtResource("3_jaa14")
-MAX_SIZE = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c7b5q")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
