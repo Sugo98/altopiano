@@ -15,7 +15,7 @@ weapon_range = 750.0
 precision = 1.0
 ammo_size = 6
 box_ammo_size = 5
-recoil = 0.5
+recoil = 10.0
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 position = Vector2(0, -36)

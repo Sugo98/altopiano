@@ -23,10 +23,7 @@ var gravity = 0
 
 
 func _physics_process(delta):
-	#debug
-	if Input.is_action_just_pressed("1st_player_use_weapon"):
-		print("sprite position: " + str($Sprite2D.global_position))
-		print("obstacle position: " + str(get_tree().root.get_node("Game/Obstacle").global_position))
+	pass
 	#if Input.is_action_just_pressed("1st_player_next_weapon"):
 		#weapon.next_weapon()
 	

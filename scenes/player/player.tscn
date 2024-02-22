@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 3)]
+"values": [Vector2i(0, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_fur0c"]
@@ -189,8 +189,10 @@ radius = 21.0
 y_sort_enabled = true
 script = ExtResource("1_m0rxb")
 movement_speed = 600.0
+shooting_slowdown = 0.3
 
 [node name="ToyPistol" parent="." instance=ExtResource("2_vtdcw")]
+is_automatic = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -200,7 +202,7 @@ centered = false
 offset = Vector2(-32, -40)
 hframes = 8
 vframes = 8
-frame = 24
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -222,11 +224,32 @@ debug_color = Color(0, 1, 0, 0.419608)
 script = ExtResource("4_uebi8")
 weapon = NodePath("../ToyPistol")
 
-[node name="NormalState" type="Node" parent="CharacterStateMachine"]
+[node name="Normal" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shooting_state")]
 script = ExtResource("5_s2gkp")
+shooting_state = NodePath("../Shooting")
 
-[node name="ShootingState" type="Node" parent="CharacterStateMachine"]
+[node name="Shooting" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("normal_state")]
 script = ExtResource("6_25ce2")
+normal_state = NodePath("../Normal")
 
-[node name="RechargingState" type="Node" parent="CharacterStateMachine"]
+[node name="ShootingTimer" type="Timer" parent="CharacterStateMachine/Shooting"]
+one_shot = true
+
+[node name="Label" type="Label" parent="CharacterStateMachine/Shooting"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Recharging" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("7_anyko")
+
+[node name="Debug" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.0
+offset_top = 8.0
+offset_right = 131.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Normal"
+horizontal_alignment = 1
