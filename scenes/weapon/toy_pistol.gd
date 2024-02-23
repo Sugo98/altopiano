@@ -54,5 +54,5 @@ func shoot():
 	bullet.global_rotation = weapon_pivot.global_rotation + rng.randf_range(-spread,+spread)
 	bullet.global_position = shoot_point.global_position - shadow_height
 	bullet.shadow_height = shadow_height
-	get_tree().root.get_child(0).add_child(bullet)
+	get_tree().root.add_child(bullet)
 	next_shot_cooldown.start(1 / rate_of_fire)

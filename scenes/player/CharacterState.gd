@@ -13,9 +13,6 @@ var can_be_hit : bool = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update_stats():
 	pass
-
-func state_input(event : InputEvent):
-	pass
 	
 func on_exit():
 	pass
@@ -24,7 +21,7 @@ func on_enter():
 	pass
 
 func state_process(delta):
-	print("Hello")
+	pass
 
 func move_player() -> void:
 	#get movement axis

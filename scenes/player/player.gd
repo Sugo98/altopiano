@@ -55,5 +55,5 @@ func update_animation(move_direction):
 		animation.play("idle_" + animation_direction)
 	
 	if move_direction.length() > 0:
-		weapon.position = Vector2.RIGHT.rotated(move_direction.angle())
+		#weapon.position = Vector2.RIGHT.rotated(move_direction.angle())
 		weapon.point_to(move_direction.angle())

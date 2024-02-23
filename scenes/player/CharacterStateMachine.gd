@@ -17,9 +17,6 @@ func _ready():
 		else:
 			push_warning("Child " +child.name+" not a CharacterState")
 	curr_state
-
-func _input(event):
-	curr_state.state_input(event)
 	
 func _physics_process(delta):
 	curr_state.state_process(delta)

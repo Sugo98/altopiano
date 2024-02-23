@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6xvs1nfo5dl4"]
+
+[ext_resource type="Script" path="res://scenes/weapon_2/pistol.gd" id="1_soush"]
+[ext_resource type="Texture2D" uid="uid://dt0qt0nhm1ln4" path="res://assets/weapons/pistol2.png" id="2_6x71l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1466w"]
+radius = 2.0
+
+[node name="Pistol" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_soush")
+bullet_speed = 3000.0
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+position = Vector2(0, -34)
+
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot"]
+position = Vector2(52, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_6x71l")
+offset = Vector2(-62, 26)
+
+[node name="ShootPoint" type="Marker2D" parent="WeaponPivot"]
+position = Vector2(52, 0)
+
+[node name="FeetPivot" type="Marker2D" parent="."]
+
+[node name="ShadowShootPoint" type="Area2D" parent="FeetPivot"]
+position = Vector2(52, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetPivot/ShadowShootPoint"]
+shape = SubResource("CircleShape2D_1466w")
+debug_color = Color(0.25, 0.25, 0.25, 0.42)
+
+[node name="NextShot" type="Timer" parent="."]
+one_shot = true
