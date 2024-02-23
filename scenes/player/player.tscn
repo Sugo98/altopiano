@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_m0rxb"]
 [ext_resource type="Texture2D" uid="uid://tciduqvcqlvu" path="res://assets/character/char_a_p1/char_a_p1_0bas_humn_v01.png" id="2_6qypq"]
-[ext_resource type="PackedScene" uid="uid://cmhjsecm1oomq" path="res://scenes/weapon/toy_pistol.tscn" id="2_vtdcw"]
+[ext_resource type="PackedScene" uid="uid://b5f1vpk8836a" path="res://scenes/weapon_2/weapons_manager.tscn" id="3_nrtxl"]
 [ext_resource type="Script" path="res://scenes/player/CharacterStateMachine.gd" id="4_uebi8"]
 [ext_resource type="Script" path="res://scenes/player/NormalState.gd" id="5_s2gkp"]
 [ext_resource type="Script" path="res://scenes/player/ShootingState.gd" id="6_25ce2"]
@@ -191,9 +191,6 @@ script = ExtResource("1_m0rxb")
 movement_speed = 600.0
 shooting_slowdown = 0.3
 
-[node name="ToyPistol" parent="." instance=ExtResource("2_vtdcw")]
-is_automatic = true
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(3, 3)
@@ -203,6 +200,8 @@ offset = Vector2(-32, -40)
 hframes = 8
 vframes = 8
 frame = 16
+
+[node name="WeaponsManager" parent="." instance=ExtResource("3_nrtxl")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -222,7 +221,7 @@ debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("weapon")]
 script = ExtResource("4_uebi8")
-weapon = NodePath("../ToyPistol")
+weapon = NodePath("../WeaponsManager")
 
 [node name="Normal" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shooting_state")]
 script = ExtResource("5_s2gkp")

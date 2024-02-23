@@ -3,7 +3,7 @@ var animation : Node
 var move_direction : Vector2
 var animation_direction : String
 
-@onready var weapon : Node = $ToyPistol
+@onready var weapon : Node = $WeaponsManager
 @onready var status : Node = $CharacterStateMachine
 
 @export var health : int

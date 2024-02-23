@@ -1,14 +1,37 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6xvs1nfo5dl4"]
 
-[ext_resource type="Script" path="res://scenes/weapon_2/pistol.gd" id="1_soush"]
 [ext_resource type="Texture2D" uid="uid://dt0qt0nhm1ln4" path="res://assets/weapons/pistol2.png" id="2_6x71l"]
+
+[sub_resource type="GDScript" id="GDScript_frvh5"]
+script/source = "extends Weapon
+
+var current_ammo : int
+var current_box_ammo : int
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func use():
+	if next_shot_cooldown.is_stopped() and !shoot_shadow.get_overlapping_bodies():
+		shot_bullet(weapon_pivot.global_rotation)
+		next_shot_cooldown.start(1 / rate_of_fire)
+		
+
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1466w"]
 radius = 2.0
 
 [node name="Pistol" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_soush")
+script = SubResource("GDScript_frvh5")
+rate_of_fire = 3.0
 bullet_speed = 3000.0
 
 [node name="WeaponPivot" type="Marker2D" parent="."]

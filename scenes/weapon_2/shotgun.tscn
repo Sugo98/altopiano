@@ -1,14 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs7gywj1iuc2"]
 
-[ext_resource type="Script" path="res://scenes/weapon_2/pistol.gd" id="1_vsi1v"]
+[ext_resource type="Script" path="res://scenes/weapon_2/shotgun.gd" id="1_ixjwf"]
 [ext_resource type="Texture2D" uid="uid://mrglxggn6lx8" path="res://assets/weapons/shotgun.png" id="2_hkv28"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1466w"]
 radius = 2.0
 
-[node name="Pistol" type="Node2D"]
+[node name="Shotgun" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_vsi1v")
+script = ExtResource("1_ixjwf")
+rosa_di_proiettli = 8
+weapon_range = 400.0
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 position = Vector2(0, -34)
