@@ -185,7 +185,7 @@ radius = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijbf5"]
 radius = 21.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_m0rxb")
 movement_speed = 600.0
